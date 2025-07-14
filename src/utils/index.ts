@@ -17,3 +17,18 @@ export const toSlug = (text: string): string =>
         .replace(/\s+/g, '-') //هر نوع فاصله را به خط فاصله (-) تبدیل می‌کند.
         .replace(/^-+|-+$/g, '') //هرگونه خط فاصله اضافی در ابتدای یا انتهای رشته را حذف می‌کند.
         .replace(/-+|/g, '-')
+
+
+const CURRENCY_FORMATTER = new Intl.NumberFormat('en-US', {
+    currency: 'USD',
+    style: 'currency',
+    minimumFractionDigits: 2,
+})
+export function formatCurrency(amount: number) {
+    return CURRENCY_FORMATTER.format(amount)
+}
+
+const NUMBER_FORMATTER = new Intl.NumberFormat('en-US')
+export function formatNumber(number: number) {
+    return NUMBER_FORMATTER.format(number)
+}
