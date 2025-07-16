@@ -1,6 +1,5 @@
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
-
 import { Cart, OrderItem } from '@/types'
 import { calcDeliveryDateAndPrice } from '@/lib/actions/order.actions'
 
@@ -17,6 +16,9 @@ const initialState: Cart = {
 interface CartState {
   cart: Cart
   addItem: (item: OrderItem, quantity: number) => Promise<string>
+
+  updateItem: (item: OrderItem, quantity: number) => Promise<void>
+  removeItem: (item: OrderItem) => void
 }
 
 const useCartStore = create(
@@ -45,12 +47,12 @@ const useCartStore = create(
 
         const updatedCartItems = existItem
           ? items.map((x) =>
-              x.product === item.product &&
+            x.product === item.product &&
               x.color === item.color &&
               x.size === item.size
-                ? { ...existItem, quantity: existItem.quantity + quantity }
-                : x
-            )
+              ? { ...existItem, quantity: existItem.quantity + quantity }
+              : x
+          )
           : [...items, { ...item, quantity }]
 
         set({
@@ -62,6 +64,7 @@ const useCartStore = create(
             })),
           },
         })
+
         // eslint-disable-next-line @typescript-eslint/no-non-null-asserted-optional-chain
         return updatedCartItems.find(
           (x) =>
@@ -70,8 +73,53 @@ const useCartStore = create(
             x.size === item.size
         )?.clientId!
       },
+      updateItem: async (item: OrderItem, quantity: number) => {
+        const { items } = get().cart
+        const exist = items.find(
+          (x) =>
+            x.product === item.product &&
+            x.color === item.color &&
+            x.size === item.size
+        )
+        if (!exist) return
+        const updatedCartItems = items.map((x) =>
+          x.product === item.product &&
+            x.color === item.color &&
+            x.size === item.size
+            ? { ...exist, quantity: quantity }
+            : x
+        )
+        set({
+          cart: {
+            ...get().cart,
+            items: updatedCartItems,
+            ...(await calcDeliveryDateAndPrice({
+              items: updatedCartItems,
+            })),
+          },
+        })
+      },
+      removeItem: async (item: OrderItem) => {
+        const { items } = get().cart
+        const updatedCartItems = items.filter(
+          (x) =>
+            x.product !== item.product ||
+            x.color !== item.color ||
+            x.size !== item.size
+        )
+        set({
+          cart: {
+            ...get().cart,
+            items: updatedCartItems,
+            ...(await calcDeliveryDateAndPrice({
+              items: updatedCartItems,
+            })),
+          },
+        })
+      },
       init: () => set({ cart: initialState }),
     }),
+
     {
       name: 'cart-store',
     }
