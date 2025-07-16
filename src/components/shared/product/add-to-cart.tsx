@@ -10,7 +10,7 @@
      SelectValue,
    } from '@/components/ui/select'
    import useCartStore from '@/hooks/use-cart-store'
-   ///import { useToast } from '@/hooks/use-toast'
+   import { useToast } from '@/hooks/use-toast'
    import { OrderItem } from '@/types'
    import { useRouter } from 'next/navigation'
    import { useState } from 'react'
@@ -23,7 +23,7 @@
      minimal?: boolean
    }) {
      const router = useRouter()
-    // const { toast } = useToast()
+     const { toast } = useToast()
 
      const { addItem } = useCartStore()
 
@@ -35,23 +35,23 @@
          onClick={() => {
            try {
              addItem(item, 1)
-            //  toast({
-            //    description: 'Added to Cart',
-            //    action: (
-            //      <Button
-            //        onClick={() => {
-            //          router.push('/cart')
-            //        }}
-            //      >
-            //        Go to Cart
-            //      </Button>
-            //    ),
-            //  })
+             toast({
+               description: 'Added to Cart',
+               action: (
+                 <Button
+                   onClick={() => {
+                     router.push('/cart')
+                   }}
+                 >
+                   Go to Cart
+                 </Button>
+               ),
+             })
            } catch (error: any) {
-            //  toast({
-            //    variant: 'destructive',
-            //    description: error.message,
-            //  })
+             toast({
+               variant: 'destructive',
+               description: error.message,
+             })
            }
          }}
        >
@@ -83,10 +83,10 @@
                const itemId = await addItem(item, quantity)
                router.push(`/cart/${itemId}`)
              } catch (error: any) {
-            //    toast({
-            //      variant: 'destructive',
-            //      description: error.message,
-            //    })
+               toast({
+                 variant: 'destructive',
+                 description: error.message,
+               })
              }
            }}
          >
@@ -99,10 +99,10 @@
                addItem(item, quantity)
                router.push(`/checkout`)
              } catch (error: any) {
-            //    toast({
-            //      variant: 'destructive',
-            //      description: error.message,
-            //    })
+               toast({
+                 variant: 'destructive',
+                 description: error.message,
+               })
              }
            }}
            className='w-full rounded-full '
