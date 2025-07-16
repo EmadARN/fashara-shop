@@ -1,5 +1,4 @@
 @import "tailwindcss";
-
 :root {
   --radius: 0.65rem;
   --background: oklch(1 0 0);
@@ -70,35 +69,70 @@
 }
 
 @layer base {
-  * {
-    @apply border-border;
+  /* اعمال border به همه المان‌ها */
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--border, currentColor);
   }
   body {
-    @apply bg-background text-foreground;
+    background-color: var(--background);
+    color: var(--foreground);
   }
 }
 
-@layer utilities {
-  .web-page-content p {
-    @apply py-2;
-  }
-  .highlight-link a,
-  a.highlight-link {
-    @apply text-sky-700  hover:text-orange-700 hover:underline;
-  }
-  .header-button {
-    @apply cursor-pointer p-1 border border-transparent hover:border-white rounded-[2px];
-  }
-  .item-button {
-    @apply p-3 hover:bg-muted hover:no-underline;
-  }
-  .h1-bold {
-    @apply font-bold text-2xl lg:text-3xl;
-  }
-  .h2-bold {
-    @apply font-bold text-lg lg:text-xl;
-  }
-  .flex-between {
-    @apply flex justify-between items-center;
-  }
+/* تعریف utilityهای سفارشی */
+@utility web-page-content-p {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+@utility highlight-link {
+  color: var(--color-sky-700);
+}
+@utility highlight-link-hover {
+  color: var(--color-orange-700);
+  text-decoration: underline;
+}
+
+@utility header-button {
+  cursor: pointer;
+  padding: 0.25rem;
+  border: 1px solid transparent;
+}
+@utility header-button-hover {
+  border-color: white;
+  border-radius: 2px;
+}
+
+@utility item-button {
+  padding: 0.75rem;
+}
+@utility item-button-hover {
+  background-color: var(--muted);
+  text-decoration: none;
+}
+
+@utility h1-bold {
+  font-weight: 700;
+  font-size: 1.5rem;
+}
+@utility h1-bold-lg {
+  font-size: 1.875rem;
+}
+
+@utility h2-bold {
+  font-weight: 700;
+  font-size: 1.125rem;
+}
+@utility h2-bold-lg {
+  font-size: 1.25rem;
+}
+
+@utility flex-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
