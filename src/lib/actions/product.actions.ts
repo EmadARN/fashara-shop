@@ -85,3 +85,11 @@ export async function getRelatedProductsByCategory({
         totalPages: Math.ceil(productsCount / limit),
     }
 }
+
+
+export async function getProductBySlug(slug: string) {
+    await connectToDatabase()
+    const product = await Product.findOne({ slug, isPublished: true })
+    if (!product) throw new Error('Product not found')
+    return JSON.parse(JSON.stringify(product)) as IProduct
+  }
