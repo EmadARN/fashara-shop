@@ -13,10 +13,10 @@ export const formatNumberWithDecimal = (num: number): string => {
 export const toSlug = (text: string): string =>
     text
         .toLowerCase()
-        .replace(/[^\w\s-]+/g, '') //کاراکترهای خاص مثل !@#$%^&*() حذف می‌شوند 
-        .replace(/\s+/g, '-') //هر نوع فاصله را به خط فاصله (-) تبدیل می‌کند.
-        .replace(/^-+|-+$/g, '') //هرگونه خط فاصله اضافی در ابتدای یا انتهای رشته را حذف می‌کند.
-        .replace(/-+|/g, '-')
+        .replace(/[^\w\s-]+/g, '')     // حذف کاراکترهای خاص
+        .replace(/\s+/g, '-')          // فاصله به خط فاصله
+        .replace(/-+/g, '-')           // خط فاصله‌های تکراری به یکی
+        .replace(/^-+|-+$/g, '');      // حذف خط فاصله‌ی اضافی اول و آخر
 
 
 const CURRENCY_FORMATTER = new Intl.NumberFormat('en-US', {
@@ -37,5 +37,5 @@ export function formatNumber(number: number) {
 export const round2 = (num: number) =>
     Math.round((num + Number.EPSILON) * 100) / 100
 
-  export const generateId = () =>
+export const generateId = () =>
     Array.from({ length: 24 }, () => Math.floor(Math.random() * 10)).join('')
