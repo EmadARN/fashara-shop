@@ -8,7 +8,7 @@
      CarouselNext,
      CarouselPrevious,
    } from '@/components/ui/carousel'
-   //import ProductCard from './product-card'
+   import ProductCard from './product-card'
    import { IProduct } from '@/lib/db/models/product.model'
 
    export default function ProductSlider({
@@ -39,12 +39,12 @@
                      : 'md:basis-1/3 lg:basis-1/5'
                  }
                >
-                 {/* <ProductCard
+                  <ProductCard
                    hideDetails={hideDetails}
                    hideAddToCart
                    hideBorder
                    product={product}
-                 /> */}
+                 /> 
                </CarouselItem>
              ))}
            </CarouselContent>
