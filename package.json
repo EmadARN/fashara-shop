@@ -10,10 +10,13 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@auth/mongodb-adapter": "^3.10.0",
+    "@hookform/resolvers": "^5.1.1",
     "@radix-ui/react-select": "^2.2.5",
     "@radix-ui/react-separator": "^1.1.7",
     "@radix-ui/react-slot": "^1.2.3",
     "@radix-ui/react-toast": "^1.2.14",
+    "bcryptjs": "^3.0.2",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "embla-carousel-autoplay": "^8.6.0",
@@ -22,8 +25,10 @@
     "mongodb": "^6.17.0",
     "mongoose": "^8.16.3",
     "next": "15.3.5",
+    "next-auth": "^5.0.0-beta.29",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "react-hook-form": "^7.60.0",
     "react-medium-image-zoom": "^5.2.14",
     "tailwind-variants": "^1.0.0",
     "tailwindcss-animate": "^1.0.7",
@@ -33,6 +38,7 @@
   "devDependencies": {
     "@eslint/eslintrc": "^3",
     "@tailwindcss/postcss": "^4",
+    "@types/bcryptjs": "^2.4.6",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
