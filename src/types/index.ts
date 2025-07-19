@@ -4,6 +4,7 @@ import { z } from 'zod'
 export type IProductInput = z.infer<typeof ProductInputSchema>
 export type Data = {
     products: IProductInput[]
+    users: IUserInput[]
     headerMenus: {
         name: string
         href: string
