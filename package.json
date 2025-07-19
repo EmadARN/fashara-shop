@@ -10,6 +10,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@radix-ui/react-scroll-area": "^1.2.9",
     "@auth/mongodb-adapter": "^3.10.0",
     "@hookform/resolvers": "^5.1.1",
     "@radix-ui/react-select": "^2.2.5",
