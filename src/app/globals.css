@@ -1,4 +1,9 @@
 @import "tailwindcss";
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
 :root {
   --radius: 0.65rem;
   --background: oklch(1 0 0);
