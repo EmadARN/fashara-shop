@@ -1,4 +1,3 @@
-
 import { Button, buttonVariants } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -16,6 +15,9 @@ import { auth } from "../../../../auth";
 
 export default async function UserButton() {
   const session = await auth();
+
+  if (!session?.user) return;
+
   return (
     <div className="flex gap-2 items-center">
       <DropdownMenu>
