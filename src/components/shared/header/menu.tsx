@@ -1,3 +1,4 @@
+"use client"
 import CartButton from "./cart-button";
 import UserButton from "./user-button";
 
