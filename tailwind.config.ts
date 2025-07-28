@@ -105,7 +105,7 @@ const config = {
           DEFAULT: 'oklch(var(--destructive))',
           foreground: 'oklch(var(--destructive-foreground))',
         },
-        border: 'oklch(var(--border))',
+        borderr: 'oklch(var(--border))',
         input: 'oklch(var(--input))',
         ring: 'oklch(var(--ring))',
         chart: {
@@ -138,3 +138,6 @@ const config = {
 } satisfies Config;
 
 export default config;
+
+
+// bg-[var(--sidebar-primary)] 
